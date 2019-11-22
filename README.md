@@ -89,9 +89,9 @@ If you don't want to edit the settings you:
 The **react-amazing-proxy** server is highly configurable. By changing the **proxy-settings.js** file you can: 
 * make the server serve the production build by defualt
 * decide if it should open a browser window on start
-* change the path where your **api server** is located
-* decide on different ports
-* write your own logic for which routes that should be proxied to your **api server**.
+* change the path to where your **api server** is located
+* decide on which ports that should be used
+* write your own logic for which routes that are proxied to your **api server**.
 
 ### Usage
 The server has updated the **npm start** command so now you can start it writing:
