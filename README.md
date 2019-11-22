@@ -16,17 +16,17 @@ Here is a schematic of how it works. It opens a "hole" through the **react-dev-s
 This means you have *two* servers running but yours frontend code only talks to the **react-dev-server** that proxies the api routes to your  **api server**.
 
 
-#### Why does SSE and web sockets not work?
+### Why does SSE and web sockets not work?
 Unfortunately the built in proxy  buffers and compresses data in a way that makes **Server Sent Events** not work and it does not listen to the *protocol upgrade requests* a **web socket** needs to make in order to work.
 
-#### No built in strategy for switching to production
+### No built in strategy for switching to production
 There is *no set strategy* for how to switch from development to production and serve a production build of your React app:
 * Should you set up another proxying system for serving the production build? 
 * Should you add an option in your **api server** to serve the static file from the build when in production?
 
 Both solutions are possible, but there is no easy *"switch to production"* flag built in.
 
-#### No built in command for starting both servers at the same time
+### No built in command for starting both servers at the same time
 This is not a big issue, but you will have to start the **react-dev-server** and your **api-server** from separate windows in your terminal, or add an npm script using **[concurrently](https://www.npmjs.com/package/concurrently)**
  or a similar tool in order to start both servers with one command.
 
@@ -36,18 +36,18 @@ React-amazing-proxy starts a server *devoted to one thing* - to be a really good
 
 ![Image description](https://raw.githubusercontent.com/ironboy/react-amazing-proxy/master/images/amazing.gif)
 
-#### npm start &ndash; all servers at once
+### npm start &ndash; all servers at once
 It automatically starts up your **api server** and the **react-development-server**. You run *three* servers, but with on simple command - **npm start**.
 
-#### npm start build &ndash; build and serve
+### npm start build &ndash; build and serve
 By writing **npm start build** you switch it to perform a production-build and serve this build instead of the dev server, *it still proxies your **api server*** - thus no code versioning is needed on your server when yo go to production.
 
-#### restarts your api server automatically on code changes
+### restarts your api server automatically on code changes
 It automatically watches yo ur  **api server** source code and restarts in changes, much like **[nodemon](https://www.npmjs.com/package/nodemon)**.
 
 ## How do I install and use it?
 
-#### Installation
+### Installation
 ```
 npm i react-amazing-proxy
 ```
@@ -79,13 +79,13 @@ module.exports = {
 };
 ```
 
-#### Basic setup
+### Basic setup
 If you don't want to edit the settings you:
 1. Make sure that a folder called **api** exists in your root folder and that it contains a **index.js** file that is the main file that starts your **api server**.
 2. Start the your **api server** on **port 3001**.
 3. Make it listen to routes to that begin with **/api/**.
 
-#### Configure it to meet your needs
+### Configure it to meet your needs
 The **react-amazing-proxy** server is highly configurable. By changing the **proxy-settings.js** file you can: 
 * make the server serve the production build by defualt
 * decide if it should open a browser window on start
@@ -93,7 +93,7 @@ The **react-amazing-proxy** server is highly configurable. By changing the **pro
 * decide on different ports
 * write your own logic for which routes that should be proxied to your **api server**.
 
-#### Starting the server
+### Usage
 The server has updated the **npm start** command so now you can start it writing:
 
 * **npm start dev** - runs your *api server* and the *react-dev-server*.
