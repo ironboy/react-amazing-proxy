@@ -110,6 +110,9 @@ action === 'build' && (dev = false);
 const http = require('http');
 const httpProxy = require('http-proxy');
 const proxy = httpProxy.createProxyServer();
+proxy.on('error', function (e) {
+  log('Proxy error', e);
+});
 
 // Setup a proxy
 const reactProxy = new httpProxy.createProxyServer();
