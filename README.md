@@ -13,21 +13,21 @@ Here is a schematic of how it works. It opens a "hole" through the **react-dev-s
 
 ![Image description](https://raw.githubusercontent.com/ironboy/react-amazing-proxy/master/images/unamazing.gif)
 
-This means you have *two* servers running but yours frontend code only talk to the **react-dev-server** that proxies the api routes to your  **api server**.
+This means you have *two* servers running but yours frontend code only talks to the **react-dev-server** that proxies the api routes to your  **api server**.
 
 
-
-#### Not good with SSE and web sockets
-Unfortunately the built in proxy  buffers and compresses data in a way that makes SSE not work and it does not listen to the protocol upgrade requests a web socket needs to make in order to work.
+#### Why does SSE and web sockets not work?
+Unfortunately the built in proxy  buffers and compresses data in a way that makes **Server Sent Events** not work and it does not listen to the *protocol upgrade requests* a **web socket** needs to make in order to work.
 
 #### No built in strategy for switching to production
-Also there is no set strategy for how to switch from development to production and serve a production build of your React app:
+There is *no set strategy* for how to switch from development to production and serve a production build of your React app:
 * Should you set up another proxying system for serving the production build? 
-* Should you add an option in your **api server** that serves the static file from the build?
-* Either way: There is no simple "switch to production" flag...
+* Should you add an option in your **api server** to serve the static file from the build when in production?
 
-#### No command for starting both servers at the same time
-This is not a big issue, but you will have to start the **react-dev-server** and your **api-server** from separate windows in your terminal, or add a npm script using **[concurrently](https://www.npmjs.com/package/concurrently)**
+Both solutions are possible, but there is no easy *"switch to production"* flag built in.
+
+#### No built in command for starting both servers at the same time
+This is not a big issue, but you will have to start the **react-dev-server** and your **api-server** from separate windows in your terminal, or add an npm script using **[concurrently](https://www.npmjs.com/package/concurrently)**
  or a similar tool in order to start both servers with one command.
 
 ## How does react-amazing-proxy work?
