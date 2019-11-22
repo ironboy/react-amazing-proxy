@@ -97,7 +97,7 @@ The **react-amazing-proxy** server is highly configurable. By changing the **pro
 The server updates the **npm start** command, so now you can write:
 
 * **npm start dev** - runs your *api server* and the *react-dev-server*.
-* **npm start build** - performs a build and runs your *api server* and serves the build.
-* **npm start** - looks at the **dev** property in *proxy-settings.js*. Behaves like *npm start dev* if the flag is true and otherwise like *npm start build*.
+* **npm start build** - performs a build, runs your *api server* and serves the build.
+* **npm start** - looks at the **dev** property in *proxy-settings.js*. Behaves like *npm start dev* if this property is true and otherwise like *npm start build*.
 
 **Happy proxying!**
