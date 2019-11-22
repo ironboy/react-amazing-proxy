@@ -45,6 +45,59 @@ By writing **npm start build** you switch it to perform a production-build and s
 #### restarts your api server automatically on code changes
 It automatically watches yo ur  **api server** source code and restarts in changes, much like **[nodemon](https://www.npmjs.com/package/nodemon)**.
 
+## How do I install and use it?
 
+#### Installation
+```
+npm i react-amazing-proxy
+```
 
+A file called **proxy-settings.js** is created in your project root folder:
 
+```js
+module.exports = {
+  // run react-dev-server (true) or serve build (false)
+  dev: true,
+  // whether to open the react site in a browser at start
+  openInBrowser: true,
+  // path to your own backend api
+  pathToAPI: './api/index',
+  // the ports
+  ports: {
+    // where you want to run the 'joint' proxied server
+    main: 3000,
+    // where you want to run the react-dev-server
+    react: 3456,
+    // where you serve your api (make sure to serve it on that port)
+    api: 3001
+  },
+  // a function that should return true if the backend-api 
+  // is to handle the request (add your own logic here as needed)
+  handleWithAPI(url) {
+    return url.indexOf('/api/') === 0;
+  }
+};
+```
+
+#### Basic setup
+If you don't want to edit the settings you:
+1. Make sure that a folder called **api** exists in your root folder and that it contains a **index.js** file that is the main file that starts your **api server**.
+2. Start the your **api server** on **port 3001**.
+3. Make it listen to routes to that begin with **/api/**.
+
+#### Configure it to meet your needs
+The **react-amazing-proxy** server is highly configurable. By changing the **proxy-settings.js** file you can: 
+* make the server serve the production build by defualt
+* decide if it should open a browser window on start
+* change the path where your **api server** is located
+* decide on different ports
+* write your own logic for which routes that should be proxied to your **api server**.
+
+#### Starting the server
+The server has updated the **npm start** command so now you can start it writing:
+
+* **npm start dev** - runs your *api server* and the *react-dev-server*.
+* **npm start build** - performs a build and runs your *api server* and serves the build.
+* **npm start** - looks at the **dev** property in *proxy-settings.js*. Behaves like *npm start dev* if the flag is true and otherwise like *npm start build*.
+
+**Happy proxying!**
