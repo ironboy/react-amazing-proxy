@@ -55,8 +55,6 @@ const reactBuildScriptPath = path.resolve(projectPath, 'node_modules/react-scrip
 const packageJsonPath = path.resolve(projectPath, './package.json');
 const reactOpenBrowserPath = path.resolve(projectPath, 'node_modules/react-dev-utils/openBrowser');
 
-const openBrowser = require(reactOpenBrowserPath);
-
 // Create a settings file for the project if it doesn't exist
 if (!fs.existsSync(settingsPath)) {
   fs.writeFileSync(
@@ -185,3 +183,5 @@ function killChildren() {
 }
 process.on('SIGINT', killChildren);
 process.on('exit', killChildren);
+
+const openBrowser = require(reactOpenBrowserPath);
