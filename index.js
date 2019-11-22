@@ -153,11 +153,13 @@ if (dev) {
     env: { PORT: ports.react + '', BROWSER: 'none' }, silent: true
   });
   devServer.stdout.on('data', (x) => log(x.toString(), 'from-dev-server'));
+  devServer.stderr.on('data', (x) => log(x.toString(), 'from-dev-server'));
 }
 else {
   // run build script
   const buildTool = cp.fork(reactBuildScriptPath, { silent: true });
   buildTool.stdout.on('data', (x) => log(x.toString(), 'from-build-tool'));
+  buildTool.stderr.on('data', (x) => log(x.toString(), 'from-build-tool'));
   // serve the static react production build using express
   const express = require('express');
   const app = express();
