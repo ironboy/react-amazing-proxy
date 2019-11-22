@@ -1,13 +1,13 @@
 # react-amazing-proxy
 The npm package **[react-amazing proxy](https://www.npmjs.com/package/react-amazing-proxy)** is an amazing proxy for use with **[create-react-app](create-react-app
 )**. It:
-* lets you use your own **api server**, together with React. development server on one single port (avoiding **[CORS problems](https://levelup.gitconnected.com/overview-of-proxy-server-and-how-we-use-them-in-react-bf67c062b929)**).
+* lets you use your own **api server**, together with React. development server on *one single port* (avoiding **[CORS problems](https://levelup.gitconnected.com/overview-of-proxy-server-and-how-we-use-them-in-react-bf67c062b929)**).
 * handles **[Server Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)** and **[web sockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)** correctly.
 * watches your backend api source code for changes.
 * can be switched to serve your production build easily.
 
-## Why the built in proxy in create-react-app is a problem
-The [built in proxy](https://create-react-app.dev/docs/proxying-api-requests-in-development) in **create-react-app** is bad does not let web socket and Server Sent Events calls through by default - and [it is very problematic/impossible to get this to work](https://github.com/facebook/create-react-app/issues/3391) even if you change its settings.
+## Why is the built in proxy in create-react-app a problem?
+The [built in proxy](https://create-react-app.dev/docs/proxying-api-requests-in-development) in **create-react-app** does not let web socket and Server Sent Events calls through by default - and [it is very problematic/impossible to get this to work](https://github.com/facebook/create-react-app/issues/3391) even if you change its settings.
 
 Here is a schematic of how it works. It opens a "hole" through the **react-dev-server** for whatever api routes you specify, so that request can reach your **api server**. 
 
