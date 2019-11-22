@@ -7,7 +7,7 @@ The npm package **[react-amazing proxy](https://www.npmjs.com/package/react-amaz
 * can be switched to serve your production build easily.
 
 ## Why is the built in proxy in create-react-app a problem?
-The [built in proxy](https://create-react-app.dev/docs/proxying-api-requests-in-development) in **create-react-app** does not let web socket and Server Sent Events calls through by default - and [it is very problematic/impossible to get this to work](https://github.com/facebook/create-react-app/issues/3391) even if you change its settings.
+The [built in proxy](https://create-react-app.dev/docs/proxying-api-requests-in-development) in **create-react-app** does not let **Server Sent Events** and **web sockets** through by default - and [it is very problematic/impossible to get this to work](https://github.com/facebook/create-react-app/issues/3391) even if you change its settings.
 
 Here is a schematic of how it works. It opens a "hole" through the **react-dev-server** for whatever api routes you specify, so that request can reach your **api server**. 
 
