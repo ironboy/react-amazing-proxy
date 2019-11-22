@@ -81,9 +81,9 @@ module.exports = {
 
 ### Basic setup
 If you don't want to edit the settings you:
-1. Make sure that a folder called **api** exists in your root folder and that it contains a **index.js** file that is the main file that starts your **api server**.
-2. Start the your **api server** on **port 3001**.
-3. Make it listen to routes to that begin with **/api/**.
+1. Make sure that a folder called **api** exists in your root folder and that it contains a **index.js**. (This should be the main file that that starts your **api server**.)
+2. *Make sure* to start your **api server** on **port 3001**.
+3. *Make sure* that the **api server** listens to routes that begin with **/api/**.
 
 ### Configure it to meet your needs
 The **react-amazing-proxy** server is highly configurable. By changing the **proxy-settings.js** file you can: 
