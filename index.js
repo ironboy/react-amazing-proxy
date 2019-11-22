@@ -47,14 +47,14 @@ function log(...args) {
 }
 
 // Calculate paths
-const projectPath = action.includes('install') ?
-  process.env.INIT_CWD : __dirname.split('node_modules')[0];
+const projectPath = __dirname.split('node_modules')[0];
 const settingsPath = path.resolve(projectPath, './proxy-settings.js');
 const defaultSettingsPath = path.resolve(__dirname, './settings.js');
 const reactStartScriptPath = path.resolve(projectPath, 'node_modules/react-scripts/scripts/start');
 const reactBuildScriptPath = path.resolve(projectPath, 'node_modules/react-scripts/scripts/build');
 const packageJsonPath = path.resolve(projectPath, './package.json');
 const reactOpenBrowserPath = path.resolve(projectPath, 'node_modules/react-dev-utils/openBrowser');
+const openBrowser = require(reactOpenBrowserPath);
 
 // Create a settings file for the project if it doesn't exist
 if (!fs.existsSync(settingsPath)) {
@@ -184,5 +184,3 @@ function killChildren() {
 }
 process.on('SIGINT', killChildren);
 process.on('exit', killChildren);
-
-const openBrowser = require(reactOpenBrowserPath);
