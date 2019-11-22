@@ -49,10 +49,10 @@ It automatically watches your  **api server** source code and restarts it on cha
 
 ### Installation
 
-**Important:** **react-amazing-proxy** is meant for use in a **create-react-app** project so if you haven't done so already create your project using:
+**Important:** **react-amazing-proxy** is meant for use in a **create-react-app** project so if you haven't done so already create your project:
 
 ```
-npx create-react-app name-of-my-new-project**
+npx create-react-app name-of-my-new-project
 ```
 
 Then install **react-amazing-proxy**:
