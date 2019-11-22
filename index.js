@@ -79,7 +79,7 @@ function writeToPackageJson(correct) {
     }
   }
 }
-writeToPackageJson('node node_modules/magic/index');
+writeToPackageJson('node node_modules/react-amazing-proxy/index');
 
 // If postinstall exit now
 if (action === 'postinstall') {
