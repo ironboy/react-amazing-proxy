@@ -47,7 +47,8 @@ function log(...args) {
 }
 
 // Calculate paths
-const projectPath = __dirname.split('node_modules')[0];
+const projectPath = action.includes('install') ?
+  process.cwd() : __dirname.split('node_modules')[0];
 const settingsPath = path.resolve(projectPath, './proxy-settings.js');
 const defaultSettingsPath = path.resolve(__dirname, './settings.js');
 const reactStartScriptPath = path.resolve(projectPath, 'node_modules/react-scripts/scripts/start');
