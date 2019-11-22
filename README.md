@@ -94,7 +94,7 @@ The **react-amazing-proxy** server is highly configurable. By changing the **pro
 * write your own logic for which routes that are proxied to your **api server**.
 
 ### Usage
-The server has updated the **npm start** command so now you can start it writing:
+The server updates the **npm start** command, so now you can write:
 
 * **npm start dev** - runs your *api server* and the *react-dev-server*.
 * **npm start build** - performs a build and runs your *api server* and serves the build.
