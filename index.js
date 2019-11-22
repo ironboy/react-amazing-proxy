@@ -53,7 +53,7 @@ const defaultSettingsPath = path.resolve(__dirname, './settings.js');
 const reactStartScriptPath = path.resolve(projectPath, 'node_modules/react-scripts/scripts/start');
 const reactBuildScriptPath = path.resolve(projectPath, 'node_modules/react-scripts/scripts/build');
 const packageJsonPath = path.resolve(projectPath, './package.json');
-const reactOpenBrowserPath = path.resolve(projectPath, 'node_modules(react-dev-utils/openBrowser');
+const reactOpenBrowserPath = path.resolve(projectPath, 'node_modules/react-dev-utils/openBrowser');
 
 const openBrowser = require(reactOpenBrowserPath);
 
