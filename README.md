@@ -32,16 +32,18 @@ This is not a big issue, but you will have to start the **react-dev-server** and
 
 ## How does react-amazing-proxy work?
 
-React-amazing-proxy starts a server devoted to one thing - to be a really good proxy that can handle all types of request including Server Sent Events and web sockets.
+React-amazing-proxy starts a server *devoted to one thing* - to be a really good proxy that can handle all types of requests including **Server Sent Events** and **web sockets**.
 
 ![Image description](https://raw.githubusercontent.com/ironboy/react-amazing-proxy/master/images/amazing.gif)
 
-
+#### npm start &ndash; all servers at once
 It automatically starts up your **api server** and the **react-development-server**. You run *three* servers, but with on simple command - **npm start**.
 
-You can switch it to perform a production-build and serve the production build instead, but still proxy your **api server** - thus no code versioning of your server is needed when going to production.
+#### npm start build &ndash; build and serve
+By writing **npm start build** you switch it to perform a production-build and serve this build instead of the dev server, *it still proxies your **api server*** - thus no code versioning is needed on your server when yo go to production.
 
-It automatically watches your source code for the **api server** and restarts in changes, much like **[nodemon](https://www.npmjs.com/package/nodemon)**.
+#### restarts your api server automatically on code changes
+It automatically watches yo ur  **api server** source code and restarts in changes, much like **[nodemon](https://www.npmjs.com/package/nodemon)**.
 
 
 
