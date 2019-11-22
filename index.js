@@ -145,29 +145,32 @@ chokidar.watch(path.dirname(pathToAPI)).on('all', () => {
     apiServer && log('Restarting the API server');
     apiServer && apiServer.kill();
     apiServer = cp.fork(pathToAPI);
+    startReact();
   }, 250);
 });
 
 // Start the react-dev-server or serve the production build using Express
-if (dev) {
-  // start the react server
-  // log('Starting the react-dev-server...');
-  devServer = cp.fork(reactStartScriptPath, {
-    env: { PORT: ports.react + '', BROWSER: 'none' }, silent: true
-  });
-  devServer.stdout.on('data', (x) => log(x.toString(), 'from-dev-server'));
-  devServer.stderr.on('data', (x) => log(x.toString(), 'from-dev-server'));
-}
-else {
-  // run build script
-  const buildTool = cp.fork(reactBuildScriptPath, { silent: true });
-  buildTool.stdout.on('data', (x) => log(x.toString(), 'from-build-tool'));
-  buildTool.stderr.on('data', (x) => log(x.toString(), 'from-build-tool'));
-  // serve the static react production build using express
-  const express = require('express');
-  const app = express();
-  app.use(express.static('./build'));
-  app.listen(ports.react);
+function startReact() {
+  if (dev) {
+    // start the react server
+    // log('Starting the react-dev-server...');
+    devServer = cp.fork(reactStartScriptPath, {
+      env: { PORT: ports.react + '', BROWSER: 'none' }, silent: true
+    });
+    devServer.stdout.on('data', (x) => log(x.toString(), 'from-dev-server'));
+    devServer.stderr.on('data', (x) => log(x.toString(), 'from-dev-server'));
+  }
+  else {
+    // run build script
+    const buildTool = cp.fork(reactBuildScriptPath, { silent: true });
+    buildTool.stdout.on('data', (x) => log(x.toString(), 'from-build-tool'));
+    buildTool.stderr.on('data', (x) => log(x.toString(), 'from-build-tool'));
+    // serve the static react production build using express
+    const express = require('express');
+    const app = express();
+    app.use(express.static('./build'));
+    app.listen(ports.react);
+  }
 }
 
 // Open in browser
