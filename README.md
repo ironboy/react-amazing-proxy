@@ -1,9 +1,9 @@
 # react-amazing-proxy
 The npm package **[react-amazing proxy](https://www.npmjs.com/package/react-amazing-proxy)** is an amazing proxy for use with **[create-react-app](create-react-app
 )**. It:
-* lets you use your own backend api, together with the react development server on one single port (avoiding [CORS problems](https://levelup.gitconnected.com/overview-of-proxy-server-and-how-we-use-them-in-react-bf67c062b929)).
-* handles web sockets and Server Sent Events correctly,
-* watches your backend api source code for changes
+* lets you use your own **api server**, together with React. development server on one single port (avoiding **[CORS problems](https://levelup.gitconnected.com/overview-of-proxy-server-and-how-we-use-them-in-react-bf67c062b929)**).
+* handles **[Server Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)** and **[web sockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)** correctly.
+* watches your backend api source code for changes.
 * can be switched to serve your production build easily.
 
 ## Why the built in proxy in create-react-app is a problem
