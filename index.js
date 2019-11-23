@@ -208,7 +208,10 @@ function browserOpen() {
 }
 
 // Close child processes
+let killed;
 function killChildren() {
+  if (killed) { return; }
+  killed = true;
   apiServer && apiServer.disconnect();
   devServer && devServer.disconnect();
   apiServer && apiServer.kill();
