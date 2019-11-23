@@ -100,7 +100,7 @@ if (action === 'preuninstall') {
 // Read settings
 const settings = Object.assign(require(defaultSettingsPath), require(settingsPath));
 let { dev, ports, handleWithAPI, openInBrowser, pathToAPI, hostForAPI } = settings;
-pathToAPI = path.resolve(projectPath, pathToAPI);
+pathToAPI = pathToAPI ? path.resolve(projectPath, pathToAPI) : '';
 
 // Override dev settings with command line argumenst dev and build
 action === 'dev' && (dev = true);
@@ -142,7 +142,6 @@ mainServer.listen(
 // Start backend api server
 // and restart on file changes in its directory
 if (pathToAPI) {
-  log('PATHTOAPI', JSON.stringify(pathToAPI))
   if (!fs.existsSync(pathToAPI)) {
     log('Could not find your api server at ', pathToAPI + '\n' +
       "If you don't want me to start it then set pathToAPI = '' " +
