@@ -142,9 +142,11 @@ mainServer.listen(
 // Start backend api server
 // and restart on file changes in its directory
 if (pathToAPI) {
+  log('PATHTOAPI', JSON.stringify(pathToAPI))
   if (!fs.existsSync(pathToAPI)) {
-    log('Could not find your api server at ', pathToAPI);
-    log('If you don\'t want me to start it then set pathToAPI = "" in proxy-settings.js');
+    log('Could not find your api server at ', pathToAPI + '\n' +
+      "If you don't want me to start it then set pathToAPI = '' " +
+      'in proxy - settings.js');
     process.exit();
   }
   else {
