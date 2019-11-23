@@ -20,6 +20,9 @@ function log(...args) {
     console.log(chalk.black.bold('\nreact-amazing-proxy:'));
     if (x.includes('Bye now!')) { log = () => { } };
   }
+  if ((args[0] + '').includes('Compiled')) {
+    startMainServer();
+  }
   if (x === 'from-dev-server') {
     args[0] = args[0].trim();
     let org = args[0];
@@ -36,6 +39,7 @@ function log(...args) {
       ignoreBuildToolForASecond = Date.now();
       args[0] = args[0].split('deployed.')[0] + 'deployed.\n';
       setTimeout(() => log('Serving the production build...'), 0);
+      startMainServer();
     }
     !lastFromDev && console.log(chalk.black.bold('\nreact-build-tool:'));
     setLastFromDev = true;
@@ -133,14 +137,16 @@ mainServer.on('upgrade', function (req, socket, head) {
 });
 
 // Start the main server
-let mainServerStarted = false;
-if (mainServerStarted) { return; }
-mainServerStarted = true;
-log(`Starting the main server on port ${ports.main}`);
-mainServer.listen(
-  ports.main
-);
-setTimeout(() => openInBrowser && browserOpen(), 2000);
+function startMainServer() {
+  let mainServerStarted = false;
+  if (mainServerStarted) { return; }
+  mainServerStarted = true;
+  log(`Starting the main server on port ${ports.main}`);
+  mainServer.listen(
+    ports.main
+  );
+  setTimeout(() => openInBrowser && browserOpen(), 2000);
+}
 
 // Start backend api server
 // and restart on file changes in its directory
