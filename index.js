@@ -91,9 +91,9 @@ if (action === 'postinstall') {
 // If preuninstall
 if (action === 'preuninstall') {
   writeToPackageJson('react-scripts start');
-  log('Removed the proxy-settings.js file\n' +
-    'and updated the npm start command...\n');
-  fs.unlinkSync(settingsPath);
+  //log('Removed the proxy-settings.js file\n' +
+  //  'and updated the npm start command...\n');
+  //fs.unlinkSync(settingsPath);
   process.exit();
 }
 
@@ -161,6 +161,9 @@ if (pathToAPI) {
       }, 250);
     });
   }
+}
+else {
+  startReact();
 }
 
 
