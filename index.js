@@ -137,17 +137,25 @@ mainServer.listen(
 
 // Start backend api server
 // and restart on file changes in its directory
-let chokiTimeout;
-log('Starting the API server');
-chokidar.watch(path.dirname(pathToAPI)).on('all', () => {
-  clearTimeout(chokiTimeout);
-  chokiTimeout = setTimeout(() => {
-    apiServer && log('Restarting the API server');
-    apiServer && apiServer.kill();
-    apiServer = cp.fork(pathToAPI);
-    startReact();
-  }, 250);
-});
+if (pathToAPI) {
+  if (!fs.existsSync(pathToAPI)) {
+    log('Could not find your api server at ', pathToAPI);
+  }
+  else {
+    let chokiTimeout;
+    log('Starting the API server');
+    chokidar.watch(path.dirname(pathToAPI)).on('all', () => {
+      clearTimeout(chokiTimeout);
+      chokiTimeout = setTimeout(() => {
+        apiServer && log('Restarting the API server');
+        apiServer && apiServer.kill();
+        apiServer = cp.fork(pathToAPI);
+        startReact();
+      }, 250);
+    });
+  }
+}
+
 
 // Start the react-dev-server or serve the production build using Express
 function startReact() {
