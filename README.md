@@ -145,5 +145,16 @@ pm2 restart my-fine-app
 
 (**Note for those with the API server on another machine**: We currently do not accept *https* as a protocol for reaching your **api server** - ask us if you need this functionality. This does not mean your whole app can not be behind a **https** "wall". Just that the communication between the proxy and the api server can't.)
 
+#### 🙋How do I set up my server to go live with my project?
+🙂That's *outside the scope* of this **react-amazing-proxy** - however, if you are a developing using MERN (MongoDB, Express, React and Node.js) we would recommend a path of:
+* Hiring a virtual server running Ubuntu or a similar Linux distro.
+* Requiring a domain and pointing it to your server.
+* Installing MongoDB, Node.js and Git on it.
+* Setting up a fronting reverse-proxy using nGinx or Node.js.
+* Letting that fronting reverse-proxy take care of https encryption/decryption using Let's Encrypt + cerbot.
+* Installing pm2.
+* Starting your app in pm2 using **react-amazing-proxy.
+
+The whole process is pretty straightforward and can be done in minutes, however if it is your first time expect it to take a couple of hours.
 
 **Happy proxying!**
