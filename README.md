@@ -153,7 +153,7 @@ pm2 restart my-fine-app
 * Setting up a fronting reverse-proxy using nGinx or Node.js.
 * Letting that fronting reverse-proxy take care of https encryption/decryption using Let's Encrypt + cerbot.
 * Installing pm2.
-* Starting your app in pm2 using **react-amazing-proxy.
+* Starting your app in pm2 using **react-amazing-proxy** (as decribed in the first FAQ question).
 
 The whole process is pretty straightforward and can be done in minutes, however if it is your first time expect it to take a couple of hours.
 
