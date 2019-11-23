@@ -21,7 +21,7 @@ function log(...args) {
     if (x.includes('Bye now!')) { log = () => { } };
   }
   if ((args[0] + '').includes('Compiled')) {
-    startMainServer();
+    setTimeout(() => startMainServer(), 0);
   }
   if (x === 'from-dev-server') {
     args[0] = args[0].trim();
