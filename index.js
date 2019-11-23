@@ -110,9 +110,6 @@ action === 'build' && (dev = false);
 const http = require('http');
 const httpProxy = require('http-proxy');
 const proxy = httpProxy.createProxyServer();
-proxy.on('error', function (e) {
-  log('Proxy error', e);
-});
 
 // Setup a proxy
 const reactProxy = new httpProxy.createProxyServer();
@@ -122,7 +119,9 @@ const mainServer = http.createServer(function (req, res) {
   let isAPI = handleWithAPI(req.url);
   let port = isAPI ? ports.api : ports.react;
   let host = isAPI ? hostForAPI : 'localhost';
-  reactProxy.web(req, res, { target: `http://${host}:${port}` });
+  reactProxy.web(req, res, { target: `http://${host}:${port}` }, e => {
+    log('Proxy error', e + '');
+  });
 });
 
 // Make it able to handle socket requests
@@ -130,7 +129,9 @@ mainServer.on('upgrade', function (req, socket, head) {
   let isAPI = handleWithAPI(req.url);
   let port = isAPI ? ports.api : ports.react;
   let host = isAPI ? hostForAPI : 'localhost';
-  proxy.ws(req, socket, head, { target: `ws://${host}:${port}` });
+  proxy.ws(req, socket, head, { target: `ws://${host}:${port}` }, e => {
+    log('Proxy error', e + '');
+  });
 });
 
 // Start the main server
