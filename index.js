@@ -134,7 +134,10 @@ mainServer.on('upgrade', function (req, socket, head) {
 });
 
 // Start the main server
+let mainServerStarted = false;
 function startMainServer() {
+  if (mainServerStarted) { return; }
+  mainServerStarted = true;
   log(`Starting the main server on port ${ports.main}`);
   mainServer.listen(
     ports.main
