@@ -40,7 +40,7 @@ React-amazing-proxy starts a server *devoted to one thing* - to be a really good
 It automatically starts up your **api server** and the **react-development-server**. You run *three* servers, but with on simple command - **npm start**.
 
 ### npm start build &ndash; build and serve
-By writing **npm start build** you switch to *perform a production build* and serve this build instead of using the dev server, *it still proxies your **api server*** - thus no code versioning is needed on your server when you go to production.
+By writing **npm start build** you switch to *perform a production build* and serve this build instead of using the dev server. *It still proxies your **api server*** - thus no code versioning is needed on your server when you go to production.
 
 ### restarts your api server automatically on code changes
 It automatically watches your  **api server** source code and restarts it on changes, much like **[nodemon](https://www.npmjs.com/package/nodemon)**.
@@ -117,7 +117,7 @@ The server updates the **npm start** command, so now you can write:
 
 ### FAQ
 
-#### 🙋I want to use [pm2](https://pm2.keymetrics.io/) to run my app on a real server, how do i accomplish that?
+#### 🙋I want to use [pm2](https://pm2.keymetrics.io/) to run my app on a real server, how do I accomplish that?
 🙂That's simple. Add a **index.js** file at the root of your project with the following content:
 
 ```js
