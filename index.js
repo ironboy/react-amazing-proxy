@@ -13,6 +13,7 @@ const chalk = require('chalk');
 let lastFromDev;
 let ignoreBuildToolForASecond = 0;
 function log(...args) {
+  let setLastFromDev = false;
   let x = args.pop();
   if (x !== 'from-dev-server' && x !== 'from-build-tool') {
     args.push(x);
@@ -23,11 +24,8 @@ function log(...args) {
     args[0] = args[0].trim();
     let org = args[0];
     args[0] = args[0].split(`:${ports.react}`).join(`:${ports.main}`);
-    if (args[0] !== org) {
-      setTimeout(() => startMainServer(), 500);
-    }
     !lastFromDev && console.log(chalk.black.bold('\nreact-dev-server:'));
-    lastFromDev = true;
+    setLastFromDev = true;
   }
   if (x === 'from-build-tool') {
     if (Date.now() - ignoreBuildToolForASecond < 1000) {
@@ -38,12 +36,12 @@ function log(...args) {
       ignoreBuildToolForASecond = Date.now();
       args[0] = args[0].split('deployed.')[0] + 'deployed.\n';
       setTimeout(() => log('Serving the production build...'), 0);
-      setTimeout(() => startMainServer(), 500);
     }
     !lastFromDev && console.log(chalk.black.bold('\nreact-build-tool:'));
-    lastFromDev = true;
+    setLastFromDev = true;
   }
   console.log(chalk.blue.bold(...args));
+  lastFromDev = setLastFromDev;
 }
 
 // Calculate paths
@@ -136,15 +134,13 @@ mainServer.on('upgrade', function (req, socket, head) {
 
 // Start the main server
 let mainServerStarted = false;
-function startMainServer() {
-  if (mainServerStarted) { return; }
-  mainServerStarted = true;
-  log(`Starting the main server on port ${ports.main}`);
-  mainServer.listen(
-    ports.main
-  );
-  openInBrowser && browserOpen();
-}
+if (mainServerStarted) { return; }
+mainServerStarted = true;
+log(`Starting the main server on port ${ports.main}`);
+mainServer.listen(
+  ports.main
+);
+setTimeout(() => openInBrowser && browserOpen(), 2000);
 
 // Start backend api server
 // and restart on file changes in its directory
