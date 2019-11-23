@@ -24,7 +24,7 @@ function log(...args) {
     let org = args[0];
     args[0] = args[0].split(`:${ports.react}`).join(`:${ports.main}`);
     if (args[0] !== org) {
-      openInBrowser && browserOpen();
+      setTimeout(() => startMainServer(), 500);
     }
     !lastFromDev && console.log(chalk.black.bold('\nreact-dev-server:'));
     lastFromDev = true;
@@ -38,7 +38,7 @@ function log(...args) {
       ignoreBuildToolForASecond = Date.now();
       args[0] = args[0].split('deployed.')[0] + 'deployed.\n';
       setTimeout(() => log('Serving the production build...'), 0);
-      openInBrowser && browserOpen();
+      setTimeout(() => startMainServer(), 500);
     }
     !lastFromDev && console.log(chalk.black.bold('\nreact-build-tool:'));
     lastFromDev = true;
@@ -139,6 +139,7 @@ function startMainServer() {
   mainServer.listen(
     ports.main
   );
+  openInBrowser && browserOpen();
 }
 
 // Start backend api server
@@ -191,7 +192,6 @@ function startReact() {
     app.use(express.static('./build'));
     app.listen(ports.react);
   }
-  setTimeout(startMainServer, 500);
 }
 
 // Open in browser
