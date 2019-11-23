@@ -134,10 +134,12 @@ mainServer.on('upgrade', function (req, socket, head) {
 });
 
 // Start the main server
-log(`Starting the main server on port ${ports.main}`);
-mainServer.listen(
-  ports.main
-);
+function startMainServer() {
+  log(`Starting the main server on port ${ports.main}`);
+  mainServer.listen(
+    ports.main
+  );
+}
 
 // Start backend api server
 // and restart on file changes in its directory
@@ -189,6 +191,7 @@ function startReact() {
     app.use(express.static('./build'));
     app.listen(ports.react);
   }
+  setTimeout(startMainServer, 500);
 }
 
 // Open in browser
