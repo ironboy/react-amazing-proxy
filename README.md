@@ -123,6 +123,6 @@ No problem, just set **pathToAPI** to an empty string. **react-amazing-proxy** c
 #### My api server is even on the same machine, what now?
 No problem, just set **pathToAPI** to an empty string and **hostForAPI** to the host (*ip* or *domain name*). **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
 
-(**Please note**: We currently do not accept *https* as a protocol for reaching your **api seerver** (ask us if you need this functionality.)
+(**Please note**: We currently do not accept *https* as a protocol for reaching your **api seerver** - ask us if you need this functionality.)
 
 **Happy proxying!**
