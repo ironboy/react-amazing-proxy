@@ -120,7 +120,7 @@ const mainServer = http.createServer(function (req, res) {
   let port = isAPI ? ports.api : ports.react;
   let host = isAPI ? hostForAPI : 'localhost';
   reactProxy.web(req, res, { target: `http://${host}:${port}` }, e => {
-    log('Proxy error', e + '');
+    log(e + '', '(non-fatal...)');
   });
 });
 
@@ -130,7 +130,7 @@ mainServer.on('upgrade', function (req, socket, head) {
   let port = isAPI ? ports.api : ports.react;
   let host = isAPI ? hostForAPI : 'localhost';
   proxy.ws(req, socket, head, { target: `ws://${host}:${port}` }, e => {
-    log('Proxy error', e + '');
+    log(e + '', '(non-fatal...)');
   });
 });
 
