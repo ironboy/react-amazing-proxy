@@ -1,12 +1,12 @@
 {
   "name": "react-amazing-proxy",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "The npm package react-amazing proxy is an amazing proxy for use with create-react-app. It lets you use your own backend api, with web sockets and server sent events working, watches your backend api code for changes, and can switch to serve your production build.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node index postinstall",
-    "preuninstall": "node index preuninstall",
+    "postinstall": "node start postinstall",
+    "preuninstall": "node start preuninstall",
     "start": "node node_modules/magic/index"
   },
   "repository": {
