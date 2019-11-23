@@ -117,7 +117,7 @@ The server updates the **npm start** command, so now you can write:
 
 ### FAQ
 
-#### 🙋I want to use [pm2](https://pm2.keymetrics.io/) to permanently run my app on a real server, how do i do that?
+#### 🙋I want to use [pm2](https://pm2.keymetrics.io/) to run my app on a real server, how do i accomplish that?
 🙂That's simple. Add a **index.js** file at the root of your project with the following content:
 
 ```js
