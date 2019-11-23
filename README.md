@@ -120,7 +120,7 @@ The server updates the **npm start** command, so now you can write:
 #### My api server is not internal to the project and and/or not JS-based, what now?
 No problem, just set **pathToAPI** to an empty string. **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
 
-#### My api server is even on the same machine, what now?
+#### My api server isn't even on the same machine, what now?
 No problem, just set **pathToAPI** to an empty string and **hostForAPI** to the host (*ip* or *domain name*). **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
 
 (**Note for those with the API server on another machine**: We currently do not accept *https* as a protocol for reaching your **api server** - ask us if you need this functionality. This does not mean your whole app can not be behind a **https** "wall". Just that the communication between the proxy and the api server can't.)
