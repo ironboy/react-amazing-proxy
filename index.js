@@ -99,7 +99,7 @@ if (action === 'preuninstall') {
 
 // Read settings
 const settings = Object.assign(require(defaultSettingsPath), require(settingsPath));
-let { dev, ports, handleWithAPI, openInBrowser, pathToAPI } = settings;
+let { dev, ports, handleWithAPI, openInBrowser, pathToAPI, hostForAPI } = settings;
 pathToAPI = path.resolve(projectPath, pathToAPI);
 
 // Override dev settings with command line argumenst dev and build
@@ -119,14 +119,18 @@ const reactProxy = new httpProxy.createProxyServer();
 
 // Create the main server
 const mainServer = http.createServer(function (req, res) {
-  let port = handleWithAPI(req.url) ? ports.api : ports.react;
-  reactProxy.web(req, res, { target: `http://localhost:${port}` });
+  let isAPI = handleWithAPI(req.url);
+  let port = isAPI ? ports.api : ports.react;
+  let host = isAPI ? hostForAPI : 'localhost';
+  reactProxy.web(req, res, { target: `http://${host}:${port}` });
 });
 
 // Make it able to handle socket requests
 mainServer.on('upgrade', function (req, socket, head) {
-  let port = handleWithAPI(req.url) ? ports.api : ports.react;
-  proxy.ws(req, socket, head, { target: `ws://localhost:${port}` });
+  let isAPI = handleWithAPI(req.url);
+  let port = isAPI ? ports.api : ports.react;
+  let host = isAPI ? hostForAPI : 'localhost';
+  proxy.ws(req, socket, head, { target: `ws://${host}:${port}` });
 });
 
 // Start the main server
@@ -140,6 +144,8 @@ mainServer.listen(
 if (pathToAPI) {
   if (!fs.existsSync(pathToAPI)) {
     log('Could not find your api server at ', pathToAPI);
+    log('If you don\'t want me to start it then set pathToAPI = "" in proxy-settings.js');
+    process.exit();
   }
   else {
     let chokiTimeout;

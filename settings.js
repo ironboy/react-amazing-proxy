@@ -4,7 +4,11 @@ module.exports = {
   // whether to open the react site in a browser at start
   openInBrowser: true,
   // path to your own backend api
+  // (set to empty string if yo don't have an internal JS-based api)
   pathToAPI: './api/index',
+  // the host for your backend api 
+  // set to another machine if your api is not local  
+  hostForAPI: 'localhost',
   // the ports
   ports: {
     // where you want to run the 'joint' proxied server

@@ -71,7 +71,11 @@ module.exports = {
   // whether to open the react site in a browser at start
   openInBrowser: true,
   // path to your own backend api
+  // (set to empty string if yo don't have an internal JS-based api)
   pathToAPI: './api/index',
+  // the host for your backend api 
+  // set to another machine if your api is not local  
+  hostForAPI: 'localhost',
   // the ports
   ports: {
     // where you want to run the 'joint' proxied server
@@ -100,6 +104,7 @@ The **react-amazing-proxy** server is highly configurable. By changing the **pro
 * make the server serve the production build by default.
 * decide if it should open a browser window on start.
 * change the path to where your **api server** is located
+* change if the **api server** is located on another machine
 * decide on which ports that should be used.
 * write your own logic for which routes that are proxied to your **api server**.
 
@@ -109,5 +114,15 @@ The server updates the **npm start** command, so now you can write:
 * **npm start dev** - runs your *api server* and the *react-dev-server*.
 * **npm start build** - performs a build, runs your *api server* and serves the build.
 * **npm start** - looks at the **dev** property in *proxy-settings.js*. Behaves like *npm start dev* if this property is true and otherwise like *npm start build*.
+
+### FAQ
+
+#### My api server is not internal to the project and and/or not JS-based, what now?
+No problem, just set **pathToAPI** to an empty string. **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
+
+#### My api server is even on the same machine, what now?
+No problem, just set **pathToAPI** to an empty string and **hostForAPI** to the host (*ip* or *domain name*). **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
+
+(**Please note**: We currently do not accept *https* as a protocol for reaching your **api seerver** (ask us if you need this functionality.)
 
 **Happy proxying!**
