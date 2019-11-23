@@ -137,8 +137,8 @@ mainServer.on('upgrade', function (req, socket, head) {
 });
 
 // Start the main server
+let mainServerStarted = false;
 function startMainServer() {
-  let mainServerStarted = false;
   if (mainServerStarted) { return; }
   mainServerStarted = true;
   log(`Starting the main server on port ${ports.main}`);
@@ -223,4 +223,8 @@ function killChildren() {
   process.exit();
 }
 process.on('SIGINT', killChildren);
-process.on('exit', killChildren);
+process.on('exit', e => {
+  if (killed) { return; }
+  log('Error', e);
+  killChildren();
+});
