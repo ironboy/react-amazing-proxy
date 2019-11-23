@@ -151,7 +151,7 @@ pm2 restart my-fine-app
 * Requiring a domain and pointing it to your server.
 * Installing MongoDB, Node.js and Git on it.
 * Setting up a fronting reverse-proxy using nGinx or Node.js.
-* Letting that fronting reverse-proxy take care of https encryption/decryption using Let's Encrypt + cerbot.
+* Letting that fronting reverse-proxy take care of https encryption/decryption using Let's Encrypt + certbot.
 * Installing pm2.
 * Starting your app in pm2 using **react-amazing-proxy** (as decribed in the first FAQ question).
 
