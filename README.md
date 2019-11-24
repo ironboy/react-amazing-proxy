@@ -109,7 +109,7 @@ The **react-amazing-proxy** server is highly configurable. By changing the **pro
 * write your own logic for which routes that are proxied to your **api server**.
 
 ### Usage
-The server updates the **npm start** command, so now you can write:
+**react-amazing-proxy** changes the **npm start** command, so now you can write:
 
 * **npm start dev** - runs your *api server* and the *react-dev-server*.
 * **npm start build** - performs a build, runs your *api server* and serves the build.
@@ -149,9 +149,10 @@ pm2 restart my-fine-app
 🙂That's *outside the scope* of working with **react-amazing-proxy** - however, if you are developing using MERN (MongoDB, Express, React and Node.js) we would recommend a path of:
 * Hiring a virtual server running Ubuntu or a similar Linux distro.
 * Requiring a domain and pointing it to your server.
-* Installing MongoDB, Node.js and Git on it.
+* Installing MongoDB, Node.js and Git and certbot on it.
+* Obtaining a free SSL certificate for your domain from Let's Encrypt via certbot.
 * Setting up a fronting reverse-proxy using nGinx or Node.js.
-* Letting that fronting reverse-proxy take care of https encryption/decryption using Let's Encrypt + certbot.
+* Letting that fronting reverse-proxy take care of https encryption/decryption.
 * Installing pm2.
 * Starting your app in pm2 using **react-amazing-proxy** (as decribed in the first FAQ question).
 
