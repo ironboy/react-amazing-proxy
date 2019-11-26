@@ -137,10 +137,10 @@ require('react-amazing-proxy')({ dev: true });
 pm2 restart my-fine-app
 ```
 
-#### 🙋 I am going to use react-amazing-proxy in an ongoing project where we previously used the built in proxy from create-react-app/nodemon/concurrently... what do have to think about?
-🙂 Just *remove* all those partial fixes: Remove old proxies by *not* having a proxy setting in *package.json* and not having a *setupProxy.js*-file in *src*. Remove your own npm start scripts using *concurrently* (or similar tools), you don't need *nodemon* to listen to changes to your backend server anymore. Think "clean as the day I created my project from *react-create-app"* and you've got it! 🙂
+#### 🙋 I am going to use react-amazing-proxy in an ongoing project where we previously used the built in proxy from create-react-app and/or nodemon and/or concurrently... what do have to think about?
+🙂 Just *remove* all those partial fixes: Remove old proxies by *not* having a proxy setting in *package.json* and not having a *setupProxy.js*-file in *src*. Remove your own npm start scripts using *concurrently* (or similar tools). And you don't need *nodemon* to listen to changes to your backend server anymore. Think "clean as the day I created my project from *react-create-app"* and you've got it! 🙂
 
-#### 🙋 What version of **react-amazing-proxy** should I use
+#### 🙋 What version of **react-amazing-proxy** should I use?
 🙂 Always use the latest one, there are no breaking changes, but we are still fixing minor bugs. For example in version 1.0.58 we introduced: *gzip compressed serving of production builds and serving index.html on undefined routes during production*. **react-amazing-proxy** is always improving.
 
 #### 🙋 My api server is not internal to the project and and/or not JS-based, what now?
