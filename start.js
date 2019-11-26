@@ -198,8 +198,15 @@ function startReact() {
     buildTool.stderr.on('data', (x) => log(x.toString(), 'from-build-tool'));
     // serve the static react production build using express
     const express = require('express');
+    const compression = require('compression');
     const app = express();
-    app.use(express.static('./build'));
+    app.use(compression());
+    let buildPath = path.resolve(projectPath, './build');
+    let indexPath = path.resolve(buildPath, './index.html');
+    app.use(express.static(buildPath));
+    app.get('*', (req, res) => {
+      res.sendFile(indexPath);
+    })
     app.listen(ports.react);
   }
 }

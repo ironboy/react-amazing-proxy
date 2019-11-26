@@ -118,7 +118,7 @@ The **react-amazing-proxy** server is highly configurable. By changing the **pro
 ### FAQ
 
 #### 🙋I want to use [pm2](https://pm2.keymetrics.io/) to run my app (on a live server), how do I accomplish that?
-🙂That's simple. Add a **index.js** file at the root of your project with the following content:
+🙂 That's simple. Add a **index.js** file at the root of your project with the following content:
 
 ```js
 require('react-amazing-proxy')();
@@ -137,16 +137,22 @@ require('react-amazing-proxy')({ dev: true });
 pm2 restart my-fine-app
 ```
 
+#### 🙋 I am going to use react-amazing-proxy in an ongoing project where we previously used the built in proxy from create-react-app/nodemon/concurrently... what do have to think about?
+🙂 Just *remove* all those partial fixes: Remove old proxies by *not* having a proxy setting in *package.json* and not having a *setupProxy.js*-file in *src*. Remove your own npm start scripts using *concurrently* (or similar tools), you don't need *nodemon* to listen to changes to your backend server anymore. Think "clean as the day I created my project from *react-create-app"* and you've got it! 🙂
+
+#### 🙋 What version of **react-amazing-proxy** should I use
+🙂 Always use the latest one, there are no breaking changes, but we are still fixing minor bugs. For example in version 1.0.58 we introduced: *gzip compressed serving of production builds and serving index.html on undefined routes during production*. **react-amazing-proxy** is always improving.
+
 #### 🙋 My api server is not internal to the project and and/or not JS-based, what now?
-🙂No problem, just set **pathToAPI** to an empty string. **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
+🙂 No problem, just set **pathToAPI** to an empty string. **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
 
 #### 🙋My api server isn't even on the same machine, what now?
-🙂No problem, just set **pathToAPI** to an empty string and **hostForAPI** to the host (*ip* or *domain name*). **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
+🙂 No problem, just set **pathToAPI** to an empty string and **hostForAPI** to the host (*ip* or *domain name*). **react-amazing-proxy** can still proxy to your api server, but you'll have to start it yourself.
 
 (**Note for those with the API server on another machine**: We currently do not accept *https* as a protocol for reaching your **api server** - ask us if you need this functionality. This does not mean your whole app can not be behind a **https** "wall". Just that the communication between the proxy and the api server can't.)
 
 #### 🙋How do I set up a live server with my project?
-🙂That's *outside the scope* of working with **react-amazing-proxy** - however, if you are developing using MERN (MongoDB, Express, React and Node.js) we would recommend a path of:
+🙂 That's *outside the scope* of working with **react-amazing-proxy** - however, if you are developing using MERN (MongoDB, Express, React and Node.js) we would recommend a path of:
 * Hiring a virtual server running Ubuntu or a similar Linux distro.
 * Requiring a domain and pointing it to your server.
 * Installing MongoDB, Node.js and Git and certbot on it.
