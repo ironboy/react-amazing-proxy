@@ -21,7 +21,7 @@ function log(...args) {
     if (x.includes('Bye now!')) { log = () => { } };
   }
   if ((args[0] + '').includes('Compiled')) {
-    setTimeout(() => startMainServer(), 0);
+    setTimeout(() => startMainServer(), 200);
   }
   if (x === 'from-dev-server') {
     args[0] = args[0].trim();
@@ -105,7 +105,7 @@ const settings = Object.assign(
   require(settingsPath),
   global.__reactAmazingProxySettings
 );
-let { dev, ports, handleWithAPI, openInBrowser, pathToAPI, hostForAPI } = settings;
+let { dev, ports, handleWithAPI, openInBrowser, pathToAPI, hostForAPI, postBuildScript } = settings;
 pathToAPI = pathToAPI ? path.resolve(projectPath, pathToAPI) : '';
 
 // Override dev settings with command line argumenst dev and build
@@ -145,11 +145,21 @@ let mainServerStarted = false;
 function startMainServer() {
   if (mainServerStarted) { return; }
   mainServerStarted = true;
+  !dev && postBuildScript && runPostBuildScript();
   log(`Starting the main server on port ${ports.main}`);
   mainServer.listen(
     ports.main
   );
   setTimeout(() => openInBrowser && browserOpen(), 2000);
+}
+
+// Run the post build script
+function runPostBuildScript() {
+  let scriptPath = path.resolve(projectPath, postBuildScript);
+  if (fs.existsSync(scriptPath)) {
+    require(scriptPath);
+    log('Ran post build script', scriptPath);
+  }
 }
 
 // Start backend api server
@@ -178,7 +188,6 @@ if (pathToAPI) {
 else {
   startReact();
 }
-
 
 // Start the react-dev-server or serve the production build using Express
 function startReact() {
