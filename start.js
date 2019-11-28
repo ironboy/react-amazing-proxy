@@ -190,7 +190,10 @@ else {
 }
 
 // Start the react-dev-server or serve the production build using Express
+let reactStarted = false;
 function startReact() {
+  if (reactStarted) { return; }
+  reactStarted = true;
   if (dev) {
     // start the react server
     // log('Starting the react-dev-server...');
