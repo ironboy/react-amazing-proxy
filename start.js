@@ -8,6 +8,10 @@ const action = process.argv.slice(2)[0];
 let apiServer;
 let devServer;
 
+// Hoisted here used in functions
+let mainServerStarted = false;
+let killed;
+
 // Logs
 const chalk = require('chalk');
 let lastFromDev;
@@ -141,7 +145,6 @@ mainServer.on('upgrade', function (req, socket, head) {
 });
 
 // Start the main server
-let mainServerStarted = false;
 function startMainServer() {
   if (mainServerStarted) { return; }
   mainServerStarted = true;
@@ -181,7 +184,7 @@ if (pathToAPI) {
         apiServer && apiServer.kill();
         apiServer = cp.fork(pathToAPI);
         startReact();
-      }, 250);
+      }, 1000);
     });
   }
 }
@@ -234,7 +237,6 @@ function browserOpen() {
 }
 
 // Close child processes
-let killed;
 function killChildren() {
   if (killed) { return; }
   killed = true;
