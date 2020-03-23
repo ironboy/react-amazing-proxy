@@ -10,6 +10,7 @@ let devServer;
 
 // Hoisted here used in functions
 let mainServerStarted = false;
+let reactStarted = false;
 let killed;
 
 // Logs
@@ -193,7 +194,6 @@ else {
 }
 
 // Start the react-dev-server or serve the production build using Express
-let reactStarted = false;
 function startReact() {
   if (reactStarted) { return; }
   reactStarted = true;
